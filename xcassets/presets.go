@@ -162,3 +162,98 @@ var (
 	//All is a preset containing every possible icon size.
 	All = append(all, Mac...)
 )
+
+//LaunchImages are presets for iPhone/iPad launch images.
+var LaunchImages = []Image{
+	{
+		Orientation:          "portrait",
+		Idiom:                "iphone",
+		Extent:               "full-screen",
+		MinimumSystemVersion: "7.0",
+		Filename:             "smallsplash.png",
+		Scale:                "2x",
+	},
+	{
+		Extent:               "full-screen",
+		Idiom:                "iphone",
+		Subtype:              "retina4",
+		Filename:             "big_splash.png",
+		MinimumSystemVersion: "7.0",
+		Orientation:          "portrait",
+		Scale:                "2x",
+	},
+	{
+		Orientation:          "portrait",
+		Idiom:                "ipad",
+		Extent:               "full-screen",
+		MinimumSystemVersion: "7.0",
+		Scale:                "1x",
+	},
+	{
+		Orientation:          "landscape",
+		Idiom:                "ipad",
+		Extent:               "full-screen",
+		MinimumSystemVersion: "7.0",
+		Scale:                "1x",
+	},
+	{
+		Orientation:          "portrait",
+		Idiom:                "ipad",
+		Extent:               "full-screen",
+		MinimumSystemVersion: "7.0",
+		Scale:                "2x",
+	},
+	{
+		Orientation:          "landscape",
+		Idiom:                "ipad",
+		Extent:               "full-screen",
+		MinimumSystemVersion: "7.0",
+		Scale:                "2x",
+	},
+	{
+		Orientation: "portrait",
+		Idiom:       "iphone",
+		Extent:      "full-screen",
+		Filename:    "Default.png",
+		Scale:       "1x",
+	},
+	{
+		Orientation: "portrait",
+		Idiom:       "iphone",
+		Extent:      "full-screen",
+		Filename:    "Default@2x.png",
+		Scale:       "2x",
+	},
+	{
+		Orientation: "portrait",
+		Idiom:       "iphone",
+		Extent:      "full-screen",
+		Filename:    "Default-568h@2x.png",
+		Subtype:     "retina4",
+		Scale:       "2x",
+	},
+	{
+		Orientation: "portrait",
+		Idiom:       "ipad",
+		Extent:      "to-status-bar",
+		Scale:       "1x",
+	},
+	{
+		Orientation: "landscape",
+		Idiom:       "ipad",
+		Extent:      "to-status-bar",
+		Scale:       "1x",
+	},
+	{
+		Orientation: "portrait",
+		Idiom:       "ipad",
+		Extent:      "to-status-bar",
+		Scale:       "2x",
+	},
+	{
+		Orientation: "landscape",
+		Idiom:       "ipad",
+		Extent:      "to-status-bar",
+		Scale:       "2x",
+	},
+}
