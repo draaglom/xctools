@@ -13,7 +13,7 @@ func main() {
 	var target = flag.String("target", "all", "The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'; defaults to 'all'.")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "%s source.png /path/to/Images.xcassets\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "%s source.png /project/path/to/Images.xcassets\n", os.Args[0])
 		flag.PrintDefaults()
 	}
 	flag.Parse()
