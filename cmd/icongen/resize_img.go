@@ -9,27 +9,27 @@ import (
 	"github.com/draaglom/xctools/xcassets"
 )
 
-var (
-	targets = xcassets.All
-)
-
 func main() {
 	var target = flag.String("target", "all", "The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'")
-	var source = flag.String("source", "source.png", "The 1024x1024 source icon")
-	var dest = flag.String("xcassets", "./Gleepost/Images.xcassets/", "The Images.xcassets folder, defaults to ./Gleepost/Images.xcassets/")
 	flag.Parse()
 	dir, err := os.Getwd()
 	if err != nil {
 		fmt.Println("Can't get working dir:", err)
 		os.Exit(-1)
 	}
-	sourceStr := *source
-	if sourceStr[:2] == "./" {
-		*source = strings.Replace(sourceStr, "./", dir, 1)
+	source := flag.Arg(0)
+	if len(source) == 0 {
+		source = "source.png"
 	}
-	destStr := *dest
-	if destStr[:2] == "./" {
-		*dest = strings.Replace(destStr, "./", dir, 1)
+	if source[:2] == "./" {
+		source = strings.Replace(source, "./", dir, 1)
+	}
+	dest := flag.Arg(1)
+	if len(dest) == 0 {
+		dest = "./"
+	}
+	if dest[:2] == "./" {
+		dest = strings.Replace(dest, "./", dir, 1)
 	}
 	var formats []xcassets.Image
 	switch {
@@ -47,7 +47,7 @@ func main() {
 		fmt.Println("Not a valid icon set:", *target)
 		os.Exit(-1)
 	}
-	err = xcassets.GenerateAppIconSet(*source, *dest, formats)
+	err = xcassets.GenerateAppIconSet(source, dest, formats)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(-1)
