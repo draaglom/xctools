@@ -73,7 +73,7 @@ func GenerateAppIconSet(source, dest string, targets []Image) error {
 		skip := false
 		for _, before := range targets[:i] {
 			if before.Px() == t.Px() {
-				fmt.Sprint("Already generated this resolution, skipping:", t.Px())
+				fmt.Println("Already generated this resolution, skipping:", t.Px())
 				skip = true
 				break
 			}
