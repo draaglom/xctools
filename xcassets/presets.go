@@ -158,9 +158,10 @@ var (
 			Filename: "Icon1024.png",
 			Scale:    "2x"},
 	}
-	all = append(Iphone, Ipad...)
+	//IOS = iphone, ipad
+	IOS = append(Iphone, Ipad...)
 	//All is a preset containing every possible icon size.
-	All = append(all, Mac...)
+	All = append(IOS, Mac...)
 )
 
 //LaunchImages are presets for iPhone/iPad launch images.
