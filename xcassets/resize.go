@@ -48,11 +48,11 @@ func GenerateAppIconSet(source, dest string, targets []Image) error {
 	}
 	//Have we been given a valid input icon?
 	if _, err := os.Stat(source); os.IsNotExist(err) {
-		return errors.New(fmt.Sprint("Can't find the source file: ", source))
+		return errors.New(fmt.Sprint("Not a valid source file: ", source))
 	}
-	//Are we in (or given the correct path of) the Gleepost project dir?
+	//Are we in (or given the correct path of) the Images.xcassets dir?
 	if _, err := os.Stat(dest); os.IsNotExist(err) {
-		return errors.New(fmt.Sprint("You didn't specify the project directory correctly -- can't find Images.xcassets here:", dest))
+		return errors.New(fmt.Sprint("Not a valid destination directory:", dest))
 	}
 	destDir := dest + "/AppIcon.appiconset"
 	//Delete the existing icon if it exists
