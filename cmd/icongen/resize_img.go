@@ -10,7 +10,12 @@ import (
 )
 
 func main() {
-	var target = flag.String("target", "all", "The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'")
+	var target = flag.String("target", "all", "The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'; defaults to 'all'.")
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "%s source.png /path/to/Images.xcassets\n", os.Args[0])
+		flag.PrintDefaults()
+	}
 	flag.Parse()
 	dir, err := os.Getwd()
 	if err != nil {
@@ -50,6 +55,7 @@ func main() {
 	err = xcassets.GenerateAppIconSet(source, dest, formats)
 	if err != nil {
 		fmt.Println(err)
+		flag.Usage()
 		os.Exit(-1)
 	}
 }
