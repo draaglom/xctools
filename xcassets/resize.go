@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"image/png"
-	"log"
 	"os"
 	"strings"
 
@@ -15,23 +14,23 @@ import (
 func resizePNG(source, dest string, dim uint) (err error) {
 	file, err := os.Open(source)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 	// decode png into image.Image
 	img, err := png.Decode(file)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 	file.Close()
 	m := resize.Thumbnail(dim, dim, img, resize.Lanczos3)
 	out, err := os.Create(dest)
 	if err != nil {
-		log.Fatal(err)
+		return
 	}
 	defer out.Close()
 	// write new image to file
-	png.Encode(out, m)
-	return nil
+	err = png.Encode(out, m)
+	return
 }
 
 //GenerateAppIconSet takes a source file and a dest Images.xcassets filepath, and overwrites the containing AppIcon.appiconset with a new one containing all the image formats in targets.
