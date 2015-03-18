@@ -11,10 +11,14 @@ type Contents struct {
 }
 
 type Image struct {
-	Size     string `json:"size"`
-	Idiom    string `json:"idiom"`
-	Filename string `json:"filename"`
-	Scale    string `json:"scale"`
+	Size                 string `json:"size"`
+	Idiom                string `json:"idiom"`
+	Filename             string `json:"filename"`
+	Scale                string `json:"scale"`
+	Subtype              string `json:"subtype,omitempty"`
+	Extent               string `json:"extent,omitempty"`
+	MinimumSystemVersion string `json:"minimum-system-version,omitempty"`
+	Orientation          string `json:"orientation,omitempty"`
 }
 
 func (i Image) Px() uint {
