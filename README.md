@@ -14,6 +14,6 @@ go install github.com/draaglom/xctools/cmd/icongen
 
 ```
 Usage of icongen:
-icongen source.png /project/path/to/Images.xcassets
+icongen source.png /path/to/project/
   -target="all": The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'; defaults to 'all'.
 ```

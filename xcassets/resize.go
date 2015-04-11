@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"image/png"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/nfnt/resize"
@@ -98,4 +99,21 @@ func GenerateAppIconSet(source, dest string, targets []Image) error {
 		return errors.New(fmt.Sprint("Error writing contents file:", err))
 	}
 	return nil
+}
+
+func FindPath(root, target string) (occurrences []string, err error) {
+	occurrences = make([]string, 0)
+	wf := func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		_, file := filepath.Split(path)
+		if file == target {
+			occurrences = append(occurrences, path)
+		}
+		return nil
+	}
+
+	err = filepath.Walk(root, wf)
+	return
 }

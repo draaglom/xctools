@@ -13,7 +13,7 @@ func main() {
 	var target = flag.String("target", "all", "The icon sizes to generate: options are 'iphone', 'ipad', 'mac', 'ios', 'all'; defaults to 'all'.")
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "%s source.png /project/path/to/Images.xcassets\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "%s source.png /path/to/project\n", os.Args[0])
 		flag.PrintDefaults()
 	}
 	flag.Parse()
@@ -36,6 +36,18 @@ func main() {
 	if dest[:2] == "./" {
 		dest = strings.Replace(dest, "./", dir, 1)
 	}
+	found, err := xcassets.FindPath(dest, "Images.xcassets")
+	if err != nil || len(found) == 0 {
+		fmt.Println("Couldn't find Images.xcassets in this tree:", dest)
+		os.Exit(-1)
+	}
+	if len(found) > 1 {
+		fmt.Println("Destination ambiguous: Found multiple Images.xcassets in this tree:")
+		for _, f := range found {
+			fmt.Println(f)
+		}
+		os.Exit(-1)
+	}
 	var formats []xcassets.Image
 	switch {
 	case *target == "all":
@@ -52,7 +64,7 @@ func main() {
 		fmt.Println("Not a valid icon set:", *target)
 		os.Exit(-1)
 	}
-	err = xcassets.GenerateAppIconSet(source, dest, formats)
+	err = xcassets.GenerateAppIconSet(source, found[0], formats)
 	if err != nil {
 		fmt.Println(err)
 		flag.Usage()
